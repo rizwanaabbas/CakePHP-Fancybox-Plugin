@@ -1,8 +1,15 @@
 -----------------------------------------
+<<<<<<< HEAD
+WHAT IS THE CAKEPHP 1.3* FANCYBOX PLUGIN?
+-----------------------------------------
+
+The CakePHP 1.3* Fancybox Plugin allows you to easily integrate
+=======
 WHAT IS THE CAKEPHP 2.* FANCYBOX PLUGIN?
 -----------------------------------------
 
 The CakePHP 2.* Fancybox Plugin allows you to easily integrate
+>>>>>>> bed5dd9e264ec3231f03e4e8be8ac0544e0ca524
 the jQuery based Fancybox plugin with your CakePHP 
 application for a nice and elegant way to add zooming functionality
 for images, html content and multi-media on your webpages.
@@ -10,7 +17,11 @@ for images, html content and multi-media on your webpages.
 The plugin brings the following mixed licensed software (see
 LICENCE) together to create a simple and sleek experience:
 
+<<<<<<< HEAD
+-CakePHP 1.3* (http://cakephp.org)
+=======
 -CakePHP 2.0 or greater (http://cakephp.org)
+>>>>>>> bed5dd9e264ec3231f03e4e8be8ac0544e0ca524
  Required by this plugin
 
 -Fancybox Plugin (http://www.fancyapps.com/fancybox/)
@@ -42,32 +53,53 @@ THE INSTALLATION PROCESS
 -------------------------
 
 NOTE: These instructions assume you already have a working copy
+<<<<<<< HEAD
+of CakePHP 1.3* with a database connection on your web server (db connection optional really).
+=======
 of CakePHP 2.* with a database connection on your web server (db connection optional really).
+>>>>>>> bed5dd9e264ec3231f03e4e8be8ac0544e0ca524
 
 You can read up on CakePHP installation and DB config here:
 http://book.cakephp.org/#!/view/913/Development AND
 http://book.cakephp.org/#!/view/922/Database-Configuration
 
 
+<<<<<<< HEAD
+INSTALLED IN 4 SIMPLE STEPS
+=======
 INSTALLED IN 5 SIMPLE STEPS
+>>>>>>> bed5dd9e264ec3231f03e4e8be8ac0544e0ca524
 
 1. Download or fork the CakePHP FancyBox Plugin at:
    https://github.com/destinydriven/CakePHP-Fancybox-Plugin
 
+<<<<<<< HEAD
+2. Create the folder 'fancybox' in your 'app/plugins' directory 
+   and copy the controllers, views, models, and webroot folders into it.
+
+3. Download jQuery (jquery-1.7.2.min.js) and upload to your 'app/webroot/js' directory 
+   and load in your app/views/layouts/default.ctp using:
+=======
 2. Create the folder 'Fancybox' in your 'app/Plugin' directory 
    and copy the Controller, View, and webroot folders into it.
 
 3. Download jQuery (jquery-1.7.2.min.js) and upload to your 'app/webroot/js' directory 
    and load in your app/View/Loyouts/default.ctp using:
+>>>>>>> bed5dd9e264ec3231f03e4e8be8ac0544e0ca524
    echo $this->Html->script('jquery-1.7.2.min');   
    Or you can include it from the Google AJAX Libraries content delivery network using:   
    echo $this->Html->script('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');   
    This fulfills the jQuery requirement since the plugin does not load jquery for you.
+<<<<<<< HEAD
+
+4. Navigate to your http://yoursite.com/fancybox to view the examples
+=======
    
 4. In your Cake installation, edit 'app/Config/bootstrap.php' and add the line 'CakePlugin::load('Fancybox');' 
    at the bottom.
 
 5. Navigate to your http://yoursite.com/fancybox to view the examples
+>>>>>>> bed5dd9e264ec3231f03e4e8be8ac0544e0ca524
 
 
 THAT'S IT!
@@ -117,7 +149,11 @@ HOW TO USE FANCYBOX PLUGIN IN YOUR APP
   			  		 'className' => 'fancybox.ajax',
   			  		 'title'=>'Ajax Content',
   			  		 'rel' => 'gallery1', 
+<<<<<<< HEAD
+  				         'ajaxUrl'=>'/fancybox/files/ajax.txt'
+=======
   				         'ajaxUrl'=>'/files/ajax.txt'
+>>>>>>> bed5dd9e264ec3231f03e4e8be8ac0544e0ca524
   				       )
 				);
   $this->Fancybox->setPreviewContent('Click to view Ajax Content'); // the link which will trigger fancybox on click
@@ -236,7 +272,11 @@ HOW TO USE FANCYBOX PLUGIN IN YOUR APP
   echo $this->Fancybox->output();
 
 Lastly take a look at webroot/js/invoke.fancybox.js to see how to structure your jquery calls depending on your desired
+<<<<<<< HEAD
+options. Feel free to edit this file but be careful to ensure that your 'class' matches what you pass to the plugin in the view.
+=======
 options. Feel free to edit this file but be careful to enure that your 'class' matches what you pass to the plugin in the view.
+>>>>>>> bed5dd9e264ec3231f03e4e8be8ac0544e0ca524
 
 		  
 	
