@@ -14,8 +14,6 @@
  * FancyApps (FancyBox) url: http://fancyapps.com/fancybox/
  *
  */
-App::uses('AppHelper', 'View/Helper');
-
 class FancyboxHelper extends AppHelper {
 	
 	/**
@@ -34,12 +32,11 @@ class FancyboxHelper extends AppHelper {
 	
 	/**
 	 * Constructor.
-	 * 
-	 * @param View
 	 * @param $options array
 	 */
-	public function __construct(View $View, $options = array()){
-	  parent::__construct($View, $options);
+	public function __construct($options = array())
+	{
+	  parent::__construct($options);
 	  //$options = array('className' => 'fancybox.image','class' => 'fancybox', 'title'=>'My Title', 'rel'=>'gallery1');	  
 	}
 	
@@ -79,50 +76,42 @@ class FancyboxHelper extends AppHelper {
 		if(isset($title))
 		{
 			$title = 'title="'.$title.'"';
-		}		
-		/* fancyBox will try to guess content type from href attribute but you can specify it directly
-		   by adding className (fancybox.image, fancybox.inline, fancybox.iframe, fancybox.ajax ) 
-		   in $options array 
-		*/
+		}
 		if(isset($className) && !empty($className))
 		{
+		/* fancyBox will try to guess content type from href attribute but you can specify it directly
+		   by adding className (fancybox.image, fancybox.inline, fancybox.iframe, fancybox.ajax ) in $options array 
+		*/
 			$this->class.= ' '.$className;
 		}
 		if(isset($rel))
 		{
 			$rel = 'rel='.$rel;
-		}		
-		if(!isset($mainContent)){
-		  if($className == 'fancybox.ajax' && isset($ajaxUrl))
+		}				
+		if(is_array($mainContent)){  // multiple elements passed as content	
+		$output = array();
+		foreach ($mainContent as $key => $content) {
+            $title = 'title='.$key;
+			$href = $content;
+			$output[] = '<a class="'.$this->class.'"'.$rel.' href="'.$href.'" '.$title.'>'.$key.'</a>';
+		}
+		if($className =='fancybox.inline')
+		{
+			$href = ' #inline1';			
+			$output[] = '<div id="inline1" style="display:none;">'.$mainContent.'</div>';
+		}
+			// this part is really messy, I know			
+			foreach ($output as $out) 
 			{
-				$ajaxUrl = $this->Html->url($ajaxUrl);
-				$href = $ajaxUrl;
-				$output = '<a class="'.$this->class.'" href="'.$href.'" '.$title.'>'.$previewContent.'</a>';		
-			}
-			 return $output;		
+				echo $out.'<br/>';
+		    }
+			$this->reset();
+			return;			
 		}
 		elseif($mainContent != null){  // single element passed as content
-		
-			if(is_array($mainContent)){  // multiple elements passed as content	
-			$output = array();
-			foreach ($mainContent as $key => $content) {
-	            $title = 'title='.$key;
-				$href = $content;
-				$output[] = '<a class="'.$this->class.'"'.$rel.' href="'.$href.'" '.$title.'>'.$key.'</a>';
-			}
-			if($className == 'fancybox.inline')
+				
+			if( isset($className) && !empty($className) )
 			{
-				$href = ' #inline1';			
-				$output[] = '<div id="inline1" style="display:none;">'.$mainContent.'</div>';
-			}
-				// this part is really messy, I know			
-				foreach ($output as $out) {
-					echo $out.'<br/>';
-			    }
-				$this->reset();
-				return;			
-			}				
-			if( isset($className) && !empty($className) ){
 				if( $className == 'fancybox.inline')
 				{	           
 					$href= ' #inline1';					
@@ -130,36 +119,43 @@ class FancyboxHelper extends AppHelper {
 				if( $className == 'fancybox.image' || $className == 'fancybox.iframe')
 				{
 		            $href =  $mainContent;	           				
-				}						
-			}			
-				$output = '<a class="'.$this->class.'"'.$rel.' href="'.$href.'" '.$title.'>'.$previewContent.'</a>';	
-		
-				$output.= '<div id="inline1" style="width:500px;display: none;">'.$mainContent.'</div>';
-				$this->reset();	
-	 			return $output;
+				}
+				if( $className=='fancybox.ajax' && isset($ajaxUrl) )
+				{
+					$ajaxUrl = $this->Html->url($ajaxUrl);
+					$href = $ajaxUrl;		
+				}			
+			}
+			
+			$output = '<a class="'.$this->class.'"'.$rel.' href="'.$href.'" '.$title.'>'.$previewContent.'</a>';	
+	
+			$output.= '<div id="inline1" style="width:500px;display: none;">'.$mainContent.'</div>';
+			$this->reset();	
+ 			return $output;
 		}
 
 	}
 	
-	function beforeRender($viewFile)
+	public function beforeRender()
 	{
 		$this->Html->css( array(
-					 'Fancybox.jquery.fancybox.css', 
-					 'Fancybox.helpers/jquery.fancybox-buttons.css',
-					 'Fancybox.helpers/jquery.fancybox-thumbs.css'
-					), null, array('inline' => FALSE )
-				);		
-				
+								 '/fancybox/css/jquery.fancybox.css', 
+								 '/fancybox/css/helpers/jquery.fancybox-buttons.css',
+								 '/fancybox/css/helpers/jquery.fancybox-thumbs.css'
+								), null, array('inline' => FALSE )
+						 );		
+		//$this->_View->addScript($this->Html->css('/fancybox/js/jquery.fancybox', null, array('inline' => false)));
+		
 		$this->Html->script( array(
-					   'Fancybox.jquery.fancybox.pack.js',
-					   'Fancybox.jquery.fancybox-buttons.js',
-					   'Fancybox.jquery.fancybox-thumbs.js',
-					   'Fancybox.jquery.fancybox.pack.js',
-					   'Fancybox.jquery.mousewheel-3.0.6.pack', 
-					   'Fancybox.invoke.fancybox'
-					  ), 
-					 array(  'inline' => FALSE )
-				    );
+									 '/fancybox/js/jquery.fancybox.pack.js',
+									 '/fancybox/js/jquery.fancybox-buttons.js',
+									 '/fancybox/js/jquery.fancybox-thumbs.js',
+									 '/fancybox/js/jquery.fancybox.pack.js',
+									 '/fancybox/js/jquery.mousewheel-3.0.6.pack', 
+									 '/fancybox/js/invoke.fancybox'
+								  ), 
+							 array(  'inline' => FALSE )
+						   );
 		
     }
 }
