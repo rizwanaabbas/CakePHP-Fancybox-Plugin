@@ -1,8 +1,8 @@
 -----------------------------------------
-WHAT IS THE CAKEPHP 2.* FANCYBOX PLUGIN?
+WHAT IS THE CAKEPHP 1.3* FANCYBOX PLUGIN?
 -----------------------------------------
 
-The CakePHP 2.* Fancybox Plugin allows you to easily integrate
+The CakePHP 1.3* Fancybox Plugin allows you to easily integrate
 the jQuery based Fancybox plugin with your CakePHP 
 application for a nice and elegant way to add zooming functionality
 for images, html content and multi-media on your webpages.
@@ -10,7 +10,7 @@ for images, html content and multi-media on your webpages.
 The plugin brings the following mixed licensed software (see
 LICENCE) together to create a simple and sleek experience:
 
--CakePHP 2.0 or greater (http://cakephp.org)
+-CakePHP 1.3* (http://cakephp.org)
  Required by this plugin
 
 -Fancybox Plugin (http://www.fancyapps.com/fancybox/)
@@ -42,32 +42,29 @@ THE INSTALLATION PROCESS
 -------------------------
 
 NOTE: These instructions assume you already have a working copy
-of CakePHP 2.* with a database connection on your web server (db connection optional really).
+of CakePHP 1.3* with a database connection on your web server (db connection optional really).
 
 You can read up on CakePHP installation and DB config here:
 http://book.cakephp.org/#!/view/913/Development AND
 http://book.cakephp.org/#!/view/922/Database-Configuration
 
 
-INSTALLED IN 5 SIMPLE STEPS
+INSTALLED IN 4 SIMPLE STEPS
 
 1. Download or fork the CakePHP FancyBox Plugin at:
    https://github.com/destinydriven/CakePHP-Fancybox-Plugin
 
-2. Create the folder 'Fancybox' in your 'app/Plugin' directory 
-   and copy the Controller, View, and webroot folders into it.
+2. Create the folder 'fancybox' in your 'app/plugins' directory 
+   and copy the controllers, views, models and webroot folders into it.
 
 3. Download jQuery (jquery-1.7.2.min.js) and upload to your 'app/webroot/js' directory 
    and load in your app/View/Loyouts/default.ctp using:
-	echo $this->Html->script('jquery-1.7.2.min');   
+		echo $this->Html->script('jquery-1.7.2.min');   
    Or you can include it from the Google AJAX Libraries content delivery network using:   
-	echo $this->Html->script('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');   
+		echo $this->Html->script('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');   
    This fulfills the jQuery requirement since the plugin does not load jquery for you.
-   
-4. In your Cake installation, edit 'app/Config/bootstrap.php' and add the line 'CakePlugin::load('Fancybox');' 
-   at the bottom.
 
-5. Navigate to your http://yoursite.com/fancybox to view the examples
+4. Navigate to your http://yoursite.com/fancybox to view the examples
 
 
 THAT'S IT!
@@ -118,7 +115,7 @@ HOW TO USE FANCYBOX PLUGIN IN YOUR APP
 			 'className' => 'fancybox.ajax',
 			 'title'=>'Ajax Content',
 			 'rel' => 'gallery1', 
-				 'ajaxUrl'=>'/files/ajax.txt'
+				 'ajaxUrl'=>'/fancybox/files/ajax.txt'
 			 )
 		);
 		$this->Fancybox->setPreviewContent('Click to view Ajax Content'); 
@@ -196,7 +193,7 @@ HOW TO USE FANCYBOX PLUGIN IN YOUR APP
 			 'className' => 'fancybox.iframe',
 			 'title'=>'Youtube Example in iframe',
 			 'rel' => 'media-gallery'
-			   )
+			)
 		);
 		
 		$this->Fancybox->setPreviewContent('Click to view Youtube Video');
@@ -251,7 +248,7 @@ HOW TO USE FANCYBOX PLUGIN IN YOUR APP
 			 'className' => 'fancybox.iframe',
 			 'title'=>'GoogleMaps Example in iframe',
 			 'rel' => 'media-gallery'
-				)
+		       )
 		 );
 		 
 		$this->Fancybox->setPreviewContent('Click to view GoogleMap');
