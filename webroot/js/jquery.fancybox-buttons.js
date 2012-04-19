@@ -1,4 +1,3 @@
-<<<<<<< HEAD
  /*!
  * Buttons helper for fancyBox
  * version: 1.0.2
@@ -228,5 +227,4 @@
 		}
 	};
 
->>>>>>> bed5dd9e264ec3231f03e4e8be8ac0544e0ca524
 }(jQuery));
