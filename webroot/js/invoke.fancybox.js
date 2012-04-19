@@ -113,11 +113,6 @@ $(document).ready(function() {
 	
 	/* Apply fancybox to multiple items */
 	
-<<<<<<< HEAD
-	/*
-=======
-	/*
->>>>>>> bed5dd9e264ec3231f03e4e8be8ac0544e0ca524
 	$(".fancybox").fancybox({
 			'transitionIn'	:	'elastic',
 			'transitionOut'	:	'elastic',
