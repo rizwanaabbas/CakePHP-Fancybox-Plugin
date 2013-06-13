@@ -59,6 +59,10 @@ class FancyboxHelper extends AppHelper {
 	public function setPreviewContent($preview = null) {
 		$this->options['previewContent'] = $preview;
 	}
+	//new method added to set the html element id to support multiple fancybox model on a single page
+	public function setId($id = null) {
+		$this->options['id'] = $id;
+	}
 	
 	public function setMainContent($content = null) {
 		$this->options['mainContent'] = $content;
@@ -70,7 +74,10 @@ class FancyboxHelper extends AppHelper {
 	
 	public function output() {
 		extract($this->options);
-
+		if(!isset($id))
+		{
+		  $id	="inline1";
+		}
 		if(isset($title)) {
 			$title = 'title="'.$title.'"';
 		}		
@@ -102,8 +109,8 @@ class FancyboxHelper extends AppHelper {
 					$output[] = '<a class="'.$this->class.'"'.$rel.' href="'.$href.'" '.$title.'>'.$key.'</a>';
 				}
 			if($className == 'fancybox.inline') {
-				$href = ' #inline1';			
-				$output[] = '<div id="inline1" style="display:none;">'.$mainContent.'</div>';
+				$href = ' #'.$id;			
+				$output[] = '<div id="'.$id.'" style="display:none;">'.$mainContent.'</div>';
 			}
 				// this part is really messy, I know			
 				foreach ($output as $out) {
@@ -114,7 +121,7 @@ class FancyboxHelper extends AppHelper {
 			}				
 			if( isset($className) && !empty($className) ){
 				if( $className == 'fancybox.inline') {	           
-					$href= ' #inline1';					
+					$href= ' #'.$id;					
 				}
 				if( $className == 'fancybox.image' || $className == 'fancybox.iframe') {
 		            		$href =  $mainContent;	           				
@@ -122,7 +129,7 @@ class FancyboxHelper extends AppHelper {
 			}			
 				$output = '<a class="'.$this->class.'"'.$rel.' href="'.$href.'" '.$title.'>'.$previewContent.'</a>';	
 		
-				$output.= '<div id="inline1" style="width:500px;display: none;">'.$mainContent.'</div>';
+				$output.= '<div id="'.$id.'" style="width:500px;display: none;">'.$mainContent.'</div>';
 				$this->reset();	
 	 			return $output;
 		}
